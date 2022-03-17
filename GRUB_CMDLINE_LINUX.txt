@@ -1,0 +1,1 @@
+cryptdevice=UUID=placeholder:cryptroot root=/dev/mapper/cryptroot
