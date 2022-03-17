@@ -2,19 +2,19 @@
 
 lsblk
 
-echo "Select the disk: #/dev/nvme0n1";
+echo "Select the disk: #nvme0n1";
 read lsblkdisk
 
-cgdisk $lsblkdisk
+cgdisk /dev/$lsblkdisk
 
 lsblk
 
-echo "Select the partition: #/dev/nvme0n1p6 root";
+echo "Select the partition: #nvme0n1p6 root";
 read lsblkpartroot
 
-cryptsetup -y --use-random luksFormat $lsblkpartroot
+cryptsetup -y --use-random luksFormat /dev/$lsblkpartroot
 
-cryptsetup luksOpen $lsblkpartroot cryptroot
+cryptsetup luksOpen /dev/$lsblkpartroot cryptroot
 
 lsblk
 
@@ -24,10 +24,10 @@ ls /dev/mapper
 
 sleep 3s
 
-echo "Select the partition: #/dev/nvme0n1p5 boot";
+echo "Select the partition: #nvme0n1p5 boot";
 read lsblkpartboot
 
-mkfs.ext4 $lsblkpartboot
+mkfs.ext4 /dev/$lsblkpartboot
 
 mkfs.ext4 /dev/mapper/cryptroot
 
@@ -39,7 +39,7 @@ mount /dev/$lsblkpartboot /mnt/boot
 
 lsblk
 
-echo "Select the partition of windows efi: #/dev/nvme0n1p2 efi";
+echo "Select the partition of windows efi: #nvme0n1p2 efi";
 read lsblkpartefi
 
 mount /dev/$lsblkpartefi
@@ -54,6 +54,8 @@ CPU=intel-ucode
 fi
 
 pacstrap /mnt linux linux-firmware base base-devel git vim grub efibootmgr $CPU
+
+sleep 5s
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
