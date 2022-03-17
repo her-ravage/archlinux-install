@@ -53,7 +53,7 @@ else
 CPU=intel-ucode
 fi
 
-pacstrap /mnt linux linux-firmware base base-devel git vim grub efibootmgr $CPU
+pacstrap /mnt linux linux-firmware base base-devel git vim grub efibootmgr nano $CPU
 
 sleep 5s
 
