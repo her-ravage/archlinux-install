@@ -13,19 +13,19 @@ echo "YOU HAVE TO ADD encrypt IN VIM HOOKS"
 
 sleep 5s
 
-vim /etc/mkinitcpio.conf
+nano /etc/mkinitcpio.conf
 
 mkinitcpio -p linux
 
 blkid >> /tmp/id.txt
 
-vim /tmp/id.txt
+nano /tmp/id.txt
 
 
 echo "
 
 ╭────────────────────────╮
-|CONGO! 1st Step is done!|
+|CONGO! 2nd Step is done!|
 ╰────────────────────────╯
 
 "
